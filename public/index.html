@@ -7,7 +7,78 @@
   <title>Weather Dashboard</title>
   <link rel="stylesheet" href="./assets/css/styles.css">
 </head>
-<body class="text-">
+<body class="w-screen h-screen">
+  <header class="w-full mx-auto mb-2 text-center text-white bg-gradient-to-r from-sky-200 to-blue-900 py-4 ">
+    <h1 class="text-4xl font-bold">Weather Dashboard</h1>
+  </header>
+  <main class="max-w-7xl mx-auto flex">
+    <aside class="px-2">
+      <div class="flex flex-col">
+        <label for="search" class="block text-lg font-bold">Search for a City: <input type="text" id="search" placeholder="City Name" class="block text-base font-normal border-black"></label>
+        <button class="bg-blue-700/80 text-white">Search</button>
+      </div>
+      <div>
+        <ul>
+          <li>City1</li>
+          <li>City2</li>
+          <li>City3</li>
+          <li>City4</li>
+          <li>City5</li>
+          <li>City6</li>
+        </ul>
+      </div>
+    </aside>
+    <div class="flex flex-col">
+      <div class="flex flex-col">
+        <h2> City date
+          <i class="far fa-sun"></i>
+        </h2>
+        <p>Temp: </p>
+        <p> Wind: </p>
+        <p> Humidity: </p>
+      </div>
+      <h3>5-Day Forecast:</h3>
+      <div class="flex">
+        <div>
+          <h4>Date</h4>
+          <i class="far fa-sun"></i>
+          <p>Temp: </p>
+          <p> Wind: </p>
+          <p> Humidity: </p>
+        </div>
+        <div>
+          <h4>Date</h4>
+          <i class="far fa-sun"></i>
+          <p>Temp: </p>
+          <p> Wind: </p>
+          <p> Humidity: </p>
+        </div>
+        <div>
+          <h4>Date</h4>
+          <i class="far fa-sun"></i>
+          <p>Temp: </p>
+          <p> Wind: </p>
+          <p> Humidity: </p>
+        </div>
+        <div>
+          <h4>Date</h4>
+          <i class="far fa-sun"></i>
+          <p>Temp: </p>
+          <p> Wind: </p>
+          <p> Humidity: </p>
+        </div>
+        <div>
+          <h4>Date</h4>
+          <i class="far fa-sun"></i>
+          <p>Temp: </p>
+          <p> Wind: </p>
+          <p> Humidity: </p>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer></footer>
+  <script src="https://kit.fontawesome.com/7ae1cdd3b5.js" crossorigin="anonymous"></script>
   <script src="./assets/js/script.js"></script>
 </body>
 </html>
