@@ -3,8 +3,9 @@ const searchBtn = document.querySelector('#searchBtn');
 const recentlySearchedList = document.querySelector('#recently-searched');
 const searchResult = document.querySelector('#result-container');
 
-// When the search button is clicked save the input into cityName variable
-function handleSearchClick() {  
+// When the search button is clicked capture the user input
+function handleSearchClick(event) {  
+  event.preventDefault();
   apiCall(userInput.value);
 }
 
@@ -26,13 +27,17 @@ function apiCall(city) {
     const temp = data.list[0].main.temp;
     const wind = data.list[0].wind.speed;
     const humidity = data.list[0].main.humidity;
-    
+    const date = data.list[0].dt_txt.split(' ').shift();
+    const icon = data.list[0].weather[0].icon;
+    const iconDesc = data.list[0].weather[0].description;
+
+    console.log(date);
+
     recentlySearched(cityName);
 
-    buildCurrentWeatherHTML(cityName, temp, wind, humidity);
-    // function printForcast(city) {
+    buildCurrentWeatherHTML(cityName, date, icon, iconDesc, temp, wind, humidity);
 
-    // }
+    buildFiveDayHTML(date, icon, iconDesc, temp, wind, humidity);
   });
 }
 
@@ -45,11 +50,15 @@ function recentlySearched(city) {
   recentlySearchedList.appendChild(cityBtn);
 }
 
-function buildCurrentWeatherHTML(city, date, temp, wind, humidity) {
+function buildCurrentWeatherHTML(city, date, icon, iconDesc, temp, wind, humidity) {
   const currentWeatherDiv = document.createElement('div');
   currentWeatherDiv.classList.add('flex', 'flex-col', 'border', 'border-black', 'py-2', 'px-1');
   const cityNameEl = document.createElement('h2');
-  cityNameEl.classList.add('h-12', 'block', 'text-3xl', 'font-bold');
+  cityNameEl.classList.add('h-12', 'text-3xl', 'font-bold');
+  const iconEl = document.createElement('img');
+  iconEl.setAttribute('src', `http://openweathermap.org/img/wn/${icon}.png`);
+  iconEl.setAttribute('alt', iconDesc);
+  iconEl.classList.add('inline');
   const tempEl = document.createElement('p');
   tempEl.classList.add('font-medium', 'my-2');
   const windEl = document.createElement('p');
@@ -57,11 +66,12 @@ function buildCurrentWeatherHTML(city, date, temp, wind, humidity) {
   const humidityEl = document.createElement('p');
   humidityEl.classList.add('font-medium', 'my-2');
 
-  cityNameEl.textContent = city;
-  tempEl.textContent = temp;
-  windEl.textContent = wind;
-  humidityEl.textContent = humidity;
+  cityNameEl.textContent = `${city} ${date}`;
+  tempEl.textContent = `Temp: ${temp} °F`;
+  windEl.textContent = `Wind: ${wind} MPH`;
+  humidityEl.textContent = `Humidity: ${humidity} %`;
 
+  cityNameEl.appendChild(iconEl);
   currentWeatherDiv.appendChild(cityNameEl);
   currentWeatherDiv.appendChild(tempEl);
   currentWeatherDiv.appendChild(windEl);
@@ -70,11 +80,42 @@ function buildCurrentWeatherHTML(city, date, temp, wind, humidity) {
   searchResult.appendChild(currentWeatherDiv);
 }
 
-function buildFiveDayHTML(date, temp, wind, humidity) {
+function buildFiveDayHTML(date, icon, iconDesc, temp, wind, humidity) {
   const headerEl = document.createElement('h3');
-  headerEl.classList.add('h-8', 'mt-2', 'block', 'text-xl', 'font-bold');
+  headerEl.classList.add('h-8', 'mt-2', 'text-xl', 'font-bold');
   headerEl.textContent = '5-Day Forecast:';
-   
+  const fiveDayDiv = document.createElement('div');
+  fiveDayDiv.classList.add('flex', 'flex-wrap', 'justify-between');
+  for (let i = 0; i < 5; i++) {
+    const oneDayDiv = document.createElement('div');
+    oneDayDiv.classList.add('w-1/6', 'h-40', 'bg-blue-900/90', 'px-1', 'text-white/90');
+    oneDayDiv.setAttribute('id', `day${i}`)
+    const dateEl = document.createElement('h4');
+    dateEl.classList.add('font-bold');
+    const iconEl = document.createElement('img');
+    iconEl.setAttribute('src', `http://openweathermap.org/img/wn/${icon}.png`);
+    iconEl.setAttribute('alt', iconDesc);
+    const tempEl = document.createElement('p');
+    tempEl.classList.add('font-medium', 'my-1');
+    const windEl = document.createElement('p');
+    windEl.classList.add('font-medium', 'my-1');
+    const humidityEl = document.createElement('p');
+    humidityEl.classList.add('font-medium', 'my-1');
+
+    dateEl.textContent = date;
+    tempEl.textContent = temp;
+    windEl.textContent = wind;
+    humidityEl.textContent = humidity;
+
+    oneDayDiv.appendChild(dateEl);
+    oneDayDiv.appendChild(iconEl);
+    oneDayDiv.appendChild(tempEl);
+    oneDayDiv.appendChild(windEl);
+    oneDayDiv.appendChild(humidityEl);
+    fiveDayDiv.appendChild(oneDayDiv);
+  }
+
+  searchResult.appendChild(fiveDayDiv);
 }
 
 // listen for click on search button
