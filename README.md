@@ -2,13 +2,7 @@
 
 ## Description
 
-This is a calendar application that allows a user to save events for each hour of the standard business day.
-
-The HTML elements for each time-block are dynamically added using javaScript. Styling to them is also applied using condition logic. It uses Dayjs to evaluate whether the time-block should be styled with a past present or future class.
-
-The user input is saved to localStorage when they click the save button. When the page is loaded again the values persist.
-
-The user can clear the calendar by clicking the clear button. That clears the values for each textarea as well as localStorage.
+The Weather Dashboard is can be used to search the current and five forecast of a given city name. To get the data it uses javaScript .fetch() method. The request is made to http://api.openweathermap.org/. Then it uses more javaScript code to pull the need values and dynamically builds the HTML needed to present the results to the user.
 
 ## Table of Contents (Optional)
 
@@ -16,8 +10,8 @@ The user can clear the calendar by clicking the clear button. That clears the va
 
 ## Usage
 
-https://sjuan634.github.io/work-day-scheduler/
-![Work Day Scheduler](./assets/images/work-day-scheduler_demo.gif)
+https://sjuan634.github.io/weather-dashboard/
+![Weather Dashboard](./assets/images/)
 
 ## Credits
 
