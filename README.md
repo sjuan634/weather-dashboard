@@ -11,7 +11,7 @@ The Weather Dashboard is can be used to search the current and five forecast of 
 ## Usage
 
 https://sjuan634.github.io/weather-dashboard/
-![Weather Dashboard](./assets/images/)
+![Weather Dashboard](./assets/images/weather-dashboard.gif)
 
 ## Credits
 
