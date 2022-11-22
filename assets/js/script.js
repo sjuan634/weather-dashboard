@@ -13,7 +13,7 @@ function handleSearchClick(event) {
 
   function apiCall(city) {
     const apiKey = '157499d21dd495e0a8fe984869b7e994'
-    const apiURL = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${apiKey}`;
+    const apiURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${apiKey}`;
 
     fetch(apiURL)
       .then(function (response) {
